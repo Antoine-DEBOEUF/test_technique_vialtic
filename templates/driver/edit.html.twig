@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block Title %} Modifier un profil chauffeur |{{parent()}} {% endblock %}
+
+{% block body %}
+<section>
+    
+    <h1>Modifier un profil chauffeur</h1>
+    <a href="{{path('drivers.index')}}">Retour</a>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    <button type="submit">Enregistrer les modifications</button>
+    {{form_end(form)}}
+
+    <form action="{{path('drivers.delete', {id:driver.id})}}" method="post" onsubmit="return confirm('Êtes-vous sûr(e) de vouloir effacer ce profil de la base de données?')">
+        <input type="hidden" name="token" value="{{csrf_token('delete' ~ driver.id)}}">
+        <button type="submit">Supprimer</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajout d'un chauffeur | {{parent()}}{% endblock %}
+
+{% block body %}
+<section>
+
+<h1>Ajout d'un chauffeur</h1>
+
+<a href="{{path('drivers.index')}}">Retour</a>
+
+{{form_start(form)}}
+{{form_widget(form)}}
+<button type="submit">Ajout du chauffeur</button>
+</section>
+{% endblock %}

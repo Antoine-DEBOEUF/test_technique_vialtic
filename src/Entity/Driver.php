@@ -6,9 +6,11 @@ use App\Repository\DriverRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DriverRepository::class)]
+#[UniqueEntity('RegistrationNumber')]
 class Driver
 {
     #[ORM\Id]
@@ -22,8 +24,8 @@ class Driver
     #[ORM\Column(type: Types::TEXT)]
     private ?string $FirstName = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $PhoneNumber = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $PhoneNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $RegistrationNumber = null;
@@ -71,7 +73,7 @@ class Driver
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->PhoneNumber;
     }

@@ -6,7 +6,9 @@
 <section>
 <h1>Liste des chauffeurs </h1>
 
-
+<a href="{{path('drivers.create')}}">
+				<button>Ajouter un profil chauffeur</button>
+			</a>
 <table>
 <tr>
     <th>Nom</th>
@@ -19,13 +21,18 @@
 {% for driver in drivers %}
 <tr>
     <td>{{driver.name}}</td>
-    <td>{{driver.first_name}}</td>
-    <td>{% for intitule in driver.driving_license.intitules %}
-        {{intitule}}
+    <td>{{driver.FirstName}}</td>
+    <td>{% for DrivingLicense in driver.DrivingLicense %}
+        {{DrivingLicense.Category}}
     {% endfor %}</td>
-    <td>{{driver.phone_number}}</td>
-    <td>{{driver.registration_number}}</td>
-    <td>{{driver.status}}</td>
+    <td>{{driver.PhoneNumber}}</td>
+    <td>{{driver.RegistrationNumber}}</td>
+    <td>{% if driver.status  %}Actif {% else %}
+        Inactif{% endif %}
+    </td>
+    <td><a href="{{path('drivers.edit', {id: driver.id})}}">
+        <button> Modifier</button>
+    </a></td>
 </tr>
 {% endfor %}
 </table>
